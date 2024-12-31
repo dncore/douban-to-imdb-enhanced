@@ -1,5 +1,19 @@
 # douban-to-imdb
 
+update:
+更新python版本到3.11.0
+更新脚本api到3.11.0版本
+更新csv_to_imdb.py上传逻辑
+
+## 初始化
+
+    pyenv install 3.11.0
+    pyenv virtualenv 3.11.0 douban-to-imdb-env
+    pyenv activate douban-to-imdb-env-enhanced
+    pip install -r requirements.txt
+---
+***from original author [@fisheepx](https://github.com/fisheepx)***
+
 &ensp;&ensp;&ensp;&ensp;最近发现 Apple Tv上的 Infuse里可以关联 Trakt显示出自己的观看记录，但是我之前的观看记录全部在豆瓣里，所以 Trakt上显示的数字全部是 0，之后的观看 Infuse会自动同步，但是之前的观看就需要自己导入一下了。找了 GitHub之后决定先把豆瓣的评分导入到 IMDB，然后再把 IMDB导出的 CSV文件用别人写好的另外一个程序导入到 Trakt。豆瓣导入 IMDB时决定只导入评分不导入任何评价，毕竟评价都是中文的评价，导入到 IMDB也没有多大意义，就让它们留在豆瓣吧。
 
 ## 需求
@@ -9,22 +23,22 @@
 * [Chrome](https://www.google.com/chrome/)
 * [chromedriver](https://chromedriver.chromium.org/downloads)（Selenium的Chrome驱动程序，如何安装请自行谷歌）
 
-## 初始化
+~~## 初始化~~
 
-    $ pyenv install 3.8.0
-    $ pyenv virtualenv 3.8.0 douban-to-imdb-env
-    $ pyenv activate douban-to-imdb-env
-    $ pip install -r requirements.txt
-    
+~~pyenv install 3.8.0~~
+~~pyenv virtualenv 3.8.0 douban-to-imdb-env~~
+~~pyenv activate douban-to-imdb-env~~
+~~pip install -r requirements.txt~~
+
 ###### *・如果不使用虚拟环境，请参照 requirements.txt中的内容自行安装依赖包*
-    
+
 ## 使用
 
 &ensp;&ensp;&ensp;&ensp;程序分两步，第一步先将豆瓣评分导出到 CSV文件，第二步再将 CSV文件中的内容导入到 IMDB。
 
 #### 导出豆瓣电影评分到 CSV文件
 
-    $ python douban_to_csv.py <user_id> [yyyymmdd] 
+    python douban_to_csv.py <user_id> [yyyymmdd] 
     
 *`[user_id]`为豆瓣的用户 ID，查找方法参见：[如何查找自己的豆瓣 ID](#如何查找自己的豆瓣-ID)*
 
@@ -34,7 +48,7 @@
 
 &ensp;&ensp;&ensp;&ensp;由于导入 IMDB需要登录，所以此过程程序会自动打开浏览器，等待用户自行登录 IMDB账号。登录成功后浏览器会自动查找电影并进行打分，这是正常的程序操作，并不是闹鬼，请勿惊慌。 👻👻👻
 
-    $ python csv_to_imdb.py [unmark/-2/-1/0/1/2]
+    python csv_to_imdb.py [unmark/-2/-1/0/1/2]
     
 ###### *・参数如果为 unmark时，则会清除CSV文件中电影对应的 IMDB中的评分*
 
@@ -72,7 +86,7 @@
 
 * #### 如何查找自己的豆瓣 ID
 
-&ensp;&ensp;&ensp;&ensp; 先登录自己的豆瓣账号，然后点击右上角的名字，打开[个人主页](https://www.douban.com/mine/)，就在跳转到的URL里：https://www.douban.com/people/[这里的数字就是你的user_id]/
+&ensp;&ensp;&ensp;&ensp; 先登录自己的豆瓣账号，然后点击右上角的名字，打开[个人主页](https://www.douban.com/mine/)，就在跳转到的URL里：<https://www.douban.com/people/[这里的数字就是你的user_id]/>
 
 ## 感谢
 
